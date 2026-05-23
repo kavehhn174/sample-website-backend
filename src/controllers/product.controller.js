@@ -1,10 +1,11 @@
-const productService = require("../services/product.service");
+import * as productService from "../services/product.service.js";
+import { createProductFromBody } from "../services/product.operations.js";
 
-function listProducts(req, res) {
+export function listProducts(req, res) {
   res.json({ items: productService.listProducts() });
 }
 
-function getProduct(req, res) {
+export function getProduct(req, res) {
   const product = productService.getProductById(req.params.id);
   if (!product) {
     res.status(404).json({ error: "Product not found" });
@@ -13,31 +14,7 @@ function getProduct(req, res) {
   res.json({ product });
 }
 
-function createProduct(req, res) {
-  const { name, price, description, tags } = req.body;
-
-  const tagList = Array.isArray(tags) ? tags : tags ? [tags] : [];
-  const normalizedTags = tagList
-    .map((t) => String(t ?? "").trim().toLowerCase())
-    .filter(Boolean);
-
-  const id = productService.nextId();
-  const numericPrice = Number(price);
-  const product = {
-    id,
-    name: String(name ?? "").trim(),
-    price: Number.isFinite(numericPrice) ? numericPrice : 0,
-    description: String(description ?? "").trim(),
-    imageUrl: "/images/placeholder-generic.svg",
-    tags: normalizedTags,
-  };
-
-  productService.addProduct(product);
+export function createProduct(req, res) {
+  const product = createProductFromBody(req.body);
   res.status(201).json({ product });
 }
-
-module.exports = {
-  listProducts,
-  getProduct,
-  createProduct,
-};

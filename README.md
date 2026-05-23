@@ -4,12 +4,32 @@ Express REST API for the product showcase. Serves product data and static placeh
 
 ## Setup
 
+**Local (Node):**
+
 ```bash
 npm install
 npm run dev
 ```
 
-Runs on `http://localhost:3001` by default.
+Runs on `http://localhost:3001`.
+
+**Local (Cloudflare Workers):**
+
+```bash
+npm install
+npm run dev:worker
+```
+
+Runs on `http://localhost:8787` (Wrangler default).
+
+## Deploy to Cloudflare Workers
+
+```bash
+npm install
+npm run deploy
+```
+
+Requires `wrangler.toml` and the Worker entry at `src/worker.js` (native `fetch` handler; Express in `src/server.js` is for local Node only). Static images in `public/` are served via Workers Assets.
 
 ## CORS
 

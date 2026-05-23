@@ -1,8 +1,6 @@
-const productService = require("../services/product.service");
+import * as productService from "../services/product.service.js";
 
-function getFeatured(req, res) {
+export function getFeatured(req, res) {
   const featured = productService.listProducts().slice(0, 3);
   res.json({ featured });
 }
-
-module.exports = { getFeatured };

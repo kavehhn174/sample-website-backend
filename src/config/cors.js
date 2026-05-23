@@ -25,7 +25,7 @@ if (process.env.CORS_ORIGIN) {
   parseOrigins(process.env.CORS_ORIGIN).forEach((o) => allowedOrigins.add(o));
 }
 
-function corsOptions() {
+export function corsOptions() {
   return {
     origin(origin, callback) {
       if (!origin) {
@@ -42,4 +42,4 @@ function corsOptions() {
   };
 }
 
-module.exports = { corsOptions, allowedOrigins };
+export { allowedOrigins };

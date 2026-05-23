@@ -2,10 +2,13 @@
   "name": "sample-website-backend",
   "version": "1.0.0",
   "description": "REST API for sample product showcase",
+  "type": "module",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "dev:worker": "wrangler dev",
+    "deploy": "wrangler deploy"
   },
   "engines": {
     "node": ">=18"
@@ -13,5 +16,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.94.0"
   }
 }

@@ -25,27 +25,20 @@ const products = [
   },
 ];
 
-function listProducts() {
+export function listProducts() {
   return [...products];
 }
 
-function getProductById(id) {
+export function getProductById(id) {
   return products.find((p) => p.id === String(id)) ?? null;
 }
 
-function addProduct(product) {
+export function addProduct(product) {
   products.push(product);
   return product;
 }
 
-function nextId() {
+export function nextId() {
   const max = products.reduce((m, p) => Math.max(m, Number(p.id) || 0), 0);
   return String(max + 1);
 }
-
-module.exports = {
-  listProducts,
-  getProductById,
-  addProduct,
-  nextId,
-};
