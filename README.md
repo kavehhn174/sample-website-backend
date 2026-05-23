@@ -11,6 +11,16 @@ npm run dev
 
 Runs on `http://localhost:3001` by default.
 
+## CORS
+
+Allowed browser origins (by default):
+
+- `http://localhost:5173` — Vite dev server
+- `http://localhost:4173` — Vite preview
+- `https://sample-website-backend.kavehhn174.workers.dev`
+
+Add more via `CORS_ORIGINS` (comma-separated) or the legacy `CORS_ORIGIN` env var.
+
 ## API
 
 | Method | Path | Description |
